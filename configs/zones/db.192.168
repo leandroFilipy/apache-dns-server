@@ -1,0 +1,11 @@
+$TTL    604800
+@       IN      SOA     ns1.site.lan. admin.site.lan. (
+                        2026022401
+                        86400
+                        64800
+                        2419200
+                        604800 )
+
+@       IN      NS      ns1.site.lan.
+100     IN      PTR     wegone.site.lan.
+200     IN      PTR     gundes.site.lan.

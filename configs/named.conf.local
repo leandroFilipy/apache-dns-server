@@ -1,0 +1,11 @@
+zone "site.lan" {
+    type master;
+
+    file "/etc/bind/zones/db.site.lan";
+};
+
+zone "0.168.192.in-addr.arpa" {
+    type master;
+
+    file "/etc/bind/zones/db.192.168";
+};

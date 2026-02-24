@@ -1,0 +1,28 @@
+version: 'httpd:latest'
+
+services:
+  web:
+    image: httpd:latest
+    container_name: srv-apache2
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./configs/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      # --
+      - ./html/index.html:/usr/local/apache2/htdocs/gundes/index.html
+      - ./html/wegone.html:/usr/local/apache2/htdocs/wegone/index.html
+
+  bind:
+    image: ubuntu/bind9:latest
+    container_name: srv-bind9
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+    environment:
+      - BIND9_USER=bind
+    volumes:
+      - ./configs/named.conf.local:/etc/bind/named.conf.local
+      - ./configs/named.conf.options:/etc/bind/named.conf.options
+      # --
+      - ./configs/zones/db.site.lan:/etc/bind/zones/db.site.lan
+      - ./configs/zones/db.192.168:/etc/bind/zones/db.192.168
