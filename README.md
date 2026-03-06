@@ -51,7 +51,7 @@ vim /usr/local/apache2/conf/httpd.conf
 Dentro desse arquivo, vamos configurar as pastas dos 2 sites que vamos utilizar.
 
 ```bash
-<VirtualHost *:8080>
+<VirtualHost *:80>
     ServerName wegone.site.lan
     ServerAlias wegone.localhost
     DocumentRoot "/usr/local/apache2/htdocs/wegone"
@@ -62,17 +62,21 @@ Dentro desse arquivo, vamos configurar as pastas dos 2 sites que vamos utilizar.
     </Directory>
 </VirtualHost>
 
-<VirtualHost *:8080>
+<VirtualHost *:80>
     ServerName gundes.site.lan
     ServerAlias gundes.localhost
     DocumentRoot "/usr/local/apache2/htdocs/gundes"
-    
+
+    DirectoryIndex index.php index.html
+
     <Directory "/usr/local/apache2/htdocs/gundes">
         AllowOverride All
         Require all granted
     </Directory>
 </VirtualHost>
 ```
+
+Também altere a linha 52 do arquivo, deve ser `Listen 80`
 
 Por padrão, o Listen virá na porta `8080`, mas caso essa porta esteja bloqueada, troque para `8081`.
 
